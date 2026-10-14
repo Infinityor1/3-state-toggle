@@ -1,5 +1,5 @@
 <script setup>
-import { ref, useId, watch } from 'vue'
+import { computed, ref, useId, watch } from 'vue'
 import DepartmentMember from './DepartmentMember.vue'
 import StateToggle from './StateToggle.vue'
 
@@ -11,13 +11,18 @@ const props = defineProps({
   employees: {
     type: Array,
     required: true,
-    },
+  },
+  searchQuery: {
+    type: String,
+    default: '',
+  },
 })
 
 const isActive = ref(false)
 const panelId = `department-panel-${useId()}`
 const departmentState = ref(0)
 const memberStates = ref(props.employees.map(() => 0))
+const searchTerms = computed(() => props.searchQuery.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean))
 
 watch(
   () => props.employees,
@@ -33,6 +38,15 @@ function toggleAccordion() {
 function setDepartmentState(state) {
   departmentState.value = state
   memberStates.value = props.employees.map(() => state)
+}
+
+function matchesSearch(employee) {
+  if (searchTerms.value.length === 0) return true
+
+  const searchableValues = [employee.name, employee.role, ...employee.certs]
+    .map((value) => value.toLocaleLowerCase())
+
+  return searchTerms.value.every((term) => searchableValues.some((value) => value.includes(term)))
 }
 </script>
 
@@ -63,6 +77,7 @@ function setDepartmentState(state) {
             <DepartmentMember
               v-for="(employee, index) in employees"
               :key="index"
+              v-show="matchesSearch(employee)"
               :employee="employee"
               :state-index="memberStates[index]"
               @update:state-index="memberStates[index] = $event"
