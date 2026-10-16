@@ -63,12 +63,13 @@
     flex-direction: column;
     padding: 10px 15px;
     margin-left: 0;
-    border-bottom: 1px solid grey;
+    border-bottom: 2px solid #d00000;
+    background-color: #dc2f02;
     list-style: none;
 
   }
   .employee-role{
-    color:rgb(147, 150, 153);
+    color:#081998;
   }
   .panel-wrapper {
     display: grid;
@@ -87,6 +88,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+   
     justify-content: space-between;
     gap: 1rem;
   }
@@ -96,7 +98,6 @@
     flex: 1;
     justify-content: flex-start;
     background: transparent;
-    color: black;
     cursor: pointer;
     padding: 10px 0;
     border: none;
@@ -119,7 +120,6 @@
     transform: rotate(45deg);
   }
   .certification-list {
-    padding-top:1rem;
     display: flex;
     flex-direction: row;
   }
@@ -128,7 +128,7 @@
   }
   .certification {
     border-radius: 15px;
-    background: rgb(207, 202, 202);
+    background: #f48c06;
     padding-inline: 10px;
     font-size: 90%;
     padding-block: 5px;

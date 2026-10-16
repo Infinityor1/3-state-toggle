@@ -16,7 +16,7 @@ defineProps({
 
 defineEmits(['update:modelValue'])
 
-const stateLabels = ['None', 'View only', 'Assigned']
+const stateLabels = ['None', 'View', 'Assigned']
 </script>
 
 <template>
@@ -24,10 +24,10 @@ const stateLabels = ['None', 'View only', 'Assigned']
     <div v-if="showLabels" class="state-labels" aria-hidden="true">
       <span v-for="label in stateLabels" :key="label">{{ label }}</span>
     </div>
-    <div class="state-options">
+    <div class="state-options-container"><div class="state-options">
       <div class="state-track" aria-hidden="true">
         <span class="state-thumb" :class="`state-${modelValue}`">
-          <span v-if="modelValue === 0" class="cross-icon">×</span>
+          <span v-if="modelValue === 0" class="cross-icon">✖</span>
           <svg v-else-if="modelValue === 1" class="state-icon" viewBox="0 0 24 24">
             <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
             <circle cx="12" cy="12" r="3" />
@@ -47,7 +47,8 @@ const stateLabels = ['None', 'View only', 'Assigned']
         :aria-pressed="modelValue === index"
         @click="$emit('update:modelValue', index)"
       />
-    </div>
+    </div></div>
+    
   </div>
 </template>
 
@@ -55,6 +56,7 @@ const stateLabels = ['None', 'View only', 'Assigned']
 .state-control{
   flex: 0 0 8rem;
   grid-template-columns:1fr;
+
 }
 .state-labels,
 .state-options{
@@ -68,22 +70,29 @@ const stateLabels = ['None', 'View only', 'Assigned']
 }
 .state-options{
   position: relative;
-  width: 100%;
+  width: 5.4rem;
   min-width: 0;
   height: 2rem;
+}
+.state-options-container{
+  width:100%;
+  display: flex;
+  justify-content:center;
 }
 .state-track{
   position: absolute;
   inset: 0;
-  border: 1px solid #777;
+  border: 1px solid #979494b0;
+  padding:.25rem;
+  height:100%;
   border-radius: 999px;
-  background: #e5e7eb;
+  background: #ffd3d3;
 }
 .state-option{
   z-index: 1;
   width: 100%;
   min-width: 0;
-  height: 2rem;
+  height: 100%;
   padding: 0;
   border: 0;
   border-radius: 999px;
@@ -97,32 +106,31 @@ const stateLabels = ['None', 'View only', 'Assigned']
 }
 .state-thumb{
   position: absolute;
-  inset-block: 2px;
-  left: 2px;
+  inset-block: 3px;
   display: grid;
-  width: calc(33.333% - 2px);
+  width: calc(33.33333% - 2px);
   place-items: center;
   border-radius: 999px;
-  background-color: white;
+  background-color: rgb(238, 155, 155);
   box-shadow: 0 1px 3px #0003;
   color: #222;
   transition: transform 0.2s ease,background-color 0.2s ease;
 }
 .state-thumb.state-1{
   transform: translateX(100%);
-  background: yellow;
+  background: rgb(232, 124, 124);
 }
 .state-thumb.state-2{
-  transform: translateX(200%);
-  background-color: rgb(16, 232, 16);
+  transform: translateX(calc(200% - 2px));
+  background-color: rgb(241, 52, 52);
 }
 .cross-icon{
-  font-size: 1.5rem;
+  font-size: .9rem;
   line-height: 1.05;
 }
 .state-icon{
-  width: 1rem;
-  height: 1rem;
+  width: .9rem;
+  height: .9rem;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;

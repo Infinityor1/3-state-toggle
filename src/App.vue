@@ -13,7 +13,7 @@ const searchQuery = ref('')
 <template>
   <main>
     <div class="wrapper">
-      <div class="modal">
+      <div class="slide-in modal">
         <SearchBar v-model="searchQuery" />
         <DepartmentAccordion
           department="Technician"

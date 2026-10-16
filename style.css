@@ -16,46 +16,72 @@ body {
     color 0.5s,
     background-color 0.5s;
   line-height: 1.6;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
+  font-family:"Josefin Sans", sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.wrapper{
-  background:black;
+div,p,li,button,input,::placeholder{
+  color:#050F61;
+  font-family:"Josefin Sans", sans-serif;
+}
+main{
+  
+background:#370617;
+width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100vh;
+}
+.wrapper{
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:20px;
+    width: 80%;
+    height: 80%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
 }
 .modal{
     width:393px;
-    height:90vh;
-    border:10px solid grey;
-    border-radius:15px;
-    background-color: rgb(184, 181, 181);
+    height:90%;
+    border:10px solid #ffba08;
+    border-radius: 15px;
+    background-color: rgb(255, 233, 64);
+    overflow-y: scroll;
+    
 }
+::-webkit-scrollbar { display:none; }
 .search-bar{
 
 }
 .search-bar input{
-  padding-block: 1rem;
-  border-radius:5px;
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  color:white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   width:100%;
+  background-color: #f48c06;
   border:2px solid rgba(159, 155, 155, 0.356);
+  border-bottom:none;
+}
+.slide-in {
+  position: relative;
+  animation: slideIn 2s forwards; /* Duration and persistence */
+}
+@keyframes slideIn {
+  0%{
+    transform: translate(0, -100vh);
+    opacity:0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity:1;
+  }
 }

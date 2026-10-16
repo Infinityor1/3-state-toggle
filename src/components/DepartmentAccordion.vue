@@ -96,14 +96,16 @@ function matchesSearch(employee) {
   width: 100%;
   border-radius: 5px;
 
+  color:white;
 }
 .accordion-header{
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.5rem 15px;
-  background-color: #eee;
+  padding: 0.5rem 15px; 
+  color:white;
+  background-color: #d00000;
 }
 .accordion{
     display: flex;
@@ -111,7 +113,6 @@ function matchesSearch(employee) {
     flex: 1;
     justify-content: flex-start;
     background: transparent;
-    color: black;
     cursor: pointer;
     padding: 10px 0;
     border: none;
